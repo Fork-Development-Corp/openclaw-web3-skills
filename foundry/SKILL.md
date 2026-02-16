@@ -75,8 +75,6 @@ Only proceed to the rest of this skill's capabilities once all four tools report
 
 ## Key Management
 
-**See `/eth-client` skill for the full key management guide.** Quick reference below:
-
 This is the canonical key management pattern for all Ethereum skills. Private keys never appear in shell arguments, command history, environment variables, or skill text.
 
 ### Import a Key into an Encrypted Keystore

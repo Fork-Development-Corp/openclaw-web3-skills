@@ -143,7 +143,7 @@ curl -s -X POST http://localhost:8545 \
   -d '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0xADDRESS","latest"],"id":1}'
 ```
 
-If confirmed nonce < pending nonce, there are transactions in the mempool. If a transaction is stuck, the user may need to replace it by resending with the same nonce and higher gas.
+If confirmed nonce < pending nonce, there are transactions in the mempool. For transaction management and replacement, see the `/foundry` skill.
 
 ## Calling Contracts (Read-Only)
 

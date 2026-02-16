@@ -18,13 +18,20 @@ A comprehensive collection of skills for Ethereum development, node operations, 
 
 **[seismic-reth](./seismic-reth/)** - Privacy-focused Ethereum node with encrypted transactions, shielded storage, and TEE attestation. Enables truly private blockchain interactions.
 
+### IPFS Skills
+
+**[ipfs-client](./ipfs-client/)** - Read-only IPFS queries via gateways. Safe exploration of distributed content, metadata inspection, and IPNS resolution without running a node.
+
+**[ipfs-server](./ipfs-server/)** - Full IPFS node operations including content publishing, pinning management, peer networking, and gateway services.
+
 ## Key Features
 
 - **🔐 Privacy-First:** Seismic skills provide transaction-level privacy and shielded storage
-- **🛠 Production-Ready:** Battle-tested tools used by Ethereum developers worldwide
+- **🌐 Distributed Storage:** IPFS skills for decentralized content and metadata management
+- **🛠 Production-Ready:** Battle-tested tools used by developers worldwide
 - **🔒 Security-Focused:** Mandatory key management best practices and security warnings
 - **🍎 macOS-Optimized:** Primary support for macOS development environments
-- **🔄 Comprehensive:** From basic queries to advanced contract deployment and debugging
+- **🔄 Comprehensive:** From basic queries to advanced deployment and node operations
 
 ## Installation & Usage
 

@@ -27,16 +27,10 @@ seismic-reth node --http --http.addr 127.0.0.1 --http.api eth,net,web3 &> seismi
 
 ## TEE Requirements
 
-- **Intel Mac:** SGX (Software Guard Extensions) support required
-- **Apple Silicon:** Native TEE support on M1/M2/M3 processors
+TEE functionality depends on Seismic's compatibility with Apple Silicon Secure Enclave - verify support before production use.
 
-## Attestation Examples
+## TEE Attestation
 
-```bash
-# Get attestation report
-curl -s -X POST http://localhost:8545 \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"seismic_getAttestationReport","id":1}' | jq
-```
+Seismic-reth provides cryptographic proofs that the node runs inside a genuine TEE. Refer to the official Seismic documentation for current attestation RPC methods and examples.
 
 See [SKILL.md](./SKILL.md) for complete documentation.

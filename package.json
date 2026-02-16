@@ -1,6 +1,6 @@
 {
   "name": "openclaw-web3-skills", 
-  "version": "1.1.0",
+  "version": "0.1.0",
   "description": "Comprehensive Web3 skills: Ethereum, IPFS, and privacy technologies for OpenClaw agents",
   "main": "README.md",
   "keywords": [
@@ -16,7 +16,7 @@
     "smart-contracts",
     "defi"
   ],
-  "author": "OpenClaw Community",
+  "author": "Fork Development Corp",
   "license": "MIT",
   "homepage": "https://github.com/Fork-Development-Corp/openclaw-web3-skills",
   "repository": {

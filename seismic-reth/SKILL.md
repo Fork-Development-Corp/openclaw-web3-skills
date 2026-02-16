@@ -14,7 +14,7 @@ For read-only Ethereum queries (balances, transactions, contracts), use the **et
 
 ## Installation from Source
 
-**See `/seismic-foundry` skill for detailed build instructions.** Brief summary:
+**Build instructions:**
 
 ### Prerequisites (macOS)
 
@@ -40,12 +40,7 @@ Name the symlink `seismic-reth` to avoid conflicts with standard reth.
 
 ## TEE Requirements
 
-**Intel Mac:** SGX (Software Guard Extensions) support required for full TEE functionality. Check with:
-```bash
-system_profiler SPHardwareDataType | grep "Model Name"
-```
-
-**Apple Silicon:** Native TEE support available on M1/M2/M3 processors.
+TEE functionality depends on Seismic's compatibility with Apple Silicon Secure Enclave. Verify support before production use.
 
 ## Starting a Seismic Node
 
@@ -67,21 +62,14 @@ Contracts can designate private storage areas that are only accessible within th
 
 ### TEE Attestation and Verification
 
-**Request attestation report:**
-```bash
-curl -s -X POST http://localhost:8545 \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"seismic_getAttestationReport","id":1}' | jq
-```
+Seismic-reth provides TEE attestation capabilities to prove nodes are running unmodified code inside a genuine TEE environment.
 
-**Verify node is running in TEE:**
-```bash
-curl -s -X POST http://localhost:8545 \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"seismic_verifyTEE","id":1}' | jq
-```
+**⚠️ Refer to seismic-reth documentation for current RPC methods.** TEE attestation APIs may vary by version and implementation.
 
-Attestation reports prove the node is running unmodified seismic-reth code inside a genuine TEE environment.
+Basic concept:
+- Attestation reports cryptographically prove execution environment integrity
+- Remote verification allows clients to validate TEE status
+- Check the official Seismic documentation for specific method names and parameters
 
 ### Network Configuration
 
