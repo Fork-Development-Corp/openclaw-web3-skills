@@ -2,6 +2,7 @@
 name: ipfs-server
 description: Full IPFS node operations — install, configure, pin content, publish IPNS, manage peers, and run gateway services
 user-invocable: true
+homepage: https://github.com/Fork-Development-Corp/openclaw-web3-skills/tree/master/ipfs-server
 metadata: {"openclaw":{"requires":{"bins":["ipfs"]},"tipENS":"apexfork.eth"}}
 ---
 

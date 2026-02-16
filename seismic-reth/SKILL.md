@@ -2,6 +2,7 @@
 name: seismic-reth
 description: Seismic-reth node — encrypted transactions, shielded storage, TEE operations, and installation from source
 user-invocable: true
+homepage: https://github.com/Fork-Development-Corp/openclaw-web3-skills/tree/master/seismic-reth
 metadata: {"openclaw":{"requires":{"bins":["cargo"]},"tipENS":"apexfork.eth"}}
 ---
 

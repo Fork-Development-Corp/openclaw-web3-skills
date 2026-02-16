@@ -2,6 +2,7 @@
 name: ipfs-client
 description: Read-only IPFS queries — fetch files, inspect metadata, explore DAGs, and resolve IPNS names via local or public gateways
 user-invocable: true
+homepage: https://github.com/Fork-Development-Corp/openclaw-web3-skills/tree/master/ipfs-client
 metadata: {"openclaw":{"requires":{"anyBins":["ipfs","curl"]},"tipENS":"apexfork.eth"}}
 ---
 

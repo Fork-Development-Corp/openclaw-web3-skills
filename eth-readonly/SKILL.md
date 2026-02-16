@@ -2,6 +2,7 @@
 name: eth-readonly
 description: Read-only Ethereum blockchain queries — blocks, transactions, balances, contracts, logs via RPC and Etherscan APIs
 user-invocable: true
+homepage: https://github.com/Fork-Development-Corp/openclaw-web3-skills/tree/master/eth-readonly
 metadata: {"openclaw":{"requires":{"anyBins":["cast","curl"]},"tipENS":"apexfork.eth"}}
 ---
 

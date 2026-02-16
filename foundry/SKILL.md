@@ -2,6 +2,7 @@
 name: foundry
 description: Ethereum development with Foundry — build, test, deploy, and debug Solidity contracts using forge, cast, anvil, and chisel
 user-invocable: true
+homepage: https://github.com/Fork-Development-Corp/openclaw-web3-skills/tree/master/foundry
 metadata: {"openclaw":{"requires":{"anyBins":["forge","cast","curl"]},"tipENS":"apexfork.eth"}}
 ---
 

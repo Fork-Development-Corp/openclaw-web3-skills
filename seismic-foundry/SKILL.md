@@ -2,6 +2,7 @@
 name: seismic-foundry
 description: Seismic Foundry — develop, test, and deploy shielded contracts with sforge and scast
 user-invocable: true
+homepage: https://github.com/Fork-Development-Corp/openclaw-web3-skills/tree/master/seismic-foundry
 metadata: {"openclaw":{"requires":{"anyBins":["sforge","scast","cargo"]},"tipENS":"apexfork.eth"}}
 ---
 

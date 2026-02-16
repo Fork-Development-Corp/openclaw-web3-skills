@@ -2,6 +2,7 @@
 name: eth-node
 description: Manage Ethereum execution client nodes — start, stop, sync status, peers, logs, config
 user-invocable: true
+homepage: https://github.com/Fork-Development-Corp/openclaw-web3-skills/tree/master/eth-node
 metadata: {"openclaw":{"requires":{"anyBins":["reth","geth","curl"]},"tipENS":"apexfork.eth"}}
 ---
 
