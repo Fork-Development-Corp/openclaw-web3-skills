@@ -1,0 +1,60 @@
+{
+  "name": "openclaw-ethereum-skills",
+  "version": "1.0.0",
+  "description": "Comprehensive Ethereum development and privacy skills for OpenClaw agents",
+  "main": "README.md",
+  "keywords": [
+    "ethereum",
+    "blockchain",
+    "foundry",
+    "privacy",
+    "seismic",
+    "skills",
+    "openclaw",
+    "smart-contracts",
+    "defi",
+    "web3"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/ethereum-skills",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/ethereum-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/ethereum-skills/issues"
+  },
+  "openclaw": {
+    "skills": [
+      {
+        "name": "eth-client",
+        "path": "./eth-client/SKILL.md",
+        "description": "Query Ethereum node state, inspect blocks/transactions/logs, and interact with contracts"
+      },
+      {
+        "name": "eth-node", 
+        "path": "./eth-node/SKILL.md",
+        "description": "Manage Ethereum execution client nodes — start, stop, sync status, peers, logs"
+      },
+      {
+        "name": "foundry",
+        "path": "./foundry/SKILL.md", 
+        "description": "Ethereum development with Foundry — build, test, deploy, and debug Solidity contracts"
+      },
+      {
+        "name": "seismic-foundry",
+        "path": "./seismic-foundry/SKILL.md",
+        "description": "Develop, test, and deploy shielded contracts with sforge and scast"
+      },
+      {
+        "name": "seismic-reth",
+        "path": "./seismic-reth/SKILL.md", 
+        "description": "Seismic-reth node — encrypted transactions, shielded storage, TEE operations"
+      }
+    ],
+    "tags": ["ethereum", "privacy", "foundry", "blockchain", "web3"],
+    "category": "blockchain",
+    "maintainer": "apexfork.eth"
+  }
+}
