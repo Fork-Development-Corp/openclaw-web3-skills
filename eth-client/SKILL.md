@@ -186,13 +186,13 @@ Use `cast calldata` to ABI-encode function calls when constructing raw data payl
 
 **⚠️ ALWAYS verify chain ID first:**
 ```bash
-cast chain-id --rpc-url http://localhost:8545
+cast chain-id --rpc-url $ETH_RPC_URL
 ```
 
 **cast:**
 ```bash
 cast send 0xCONTRACT "transfer(address,uint256)" 0xTO 1000 \
-  --account my-keystore --chain 11155111 --rpc-url http://localhost:8545
+  --account my-keystore --chain 1 --rpc-url $ETH_RPC_URL
 ```
 
 **curl (eth_sendRawTransaction):**
@@ -208,12 +208,12 @@ curl -s -X POST http://localhost:8545 \
 
 **cast:**
 ```bash
-cast estimate 0xCONTRACT "transfer(address,uint256)" 0xTO 1000 --rpc-url http://localhost:8545
+cast estimate 0xCONTRACT "transfer(address,uint256)" 0xTO 1000 --rpc-url $ETH_RPC_URL
 ```
 
 **curl:**
 ```bash
-curl -s -X POST http://localhost:8545 \
+curl -s -X POST $ETH_RPC_URL \
   -H "Content-Type: application/json" \
   -d '{"jsonrpc":"2.0","method":"eth_estimateGas","params":[{"to":"0xCONTRACT","data":"0xDATA"}],"id":1}'
 ```
@@ -224,8 +224,8 @@ curl -s -X POST http://localhost:8545 \
 
 ```bash
 # Good: specific contract + block range
-cast logs 0xCONTRACT --from-block 19000000 --to-block 19001000 \
-  "Transfer(address,address,uint256)" --rpc-url http://localhost:8545
+cast logs 0xA0b86a33E6441929FD1F423c7ecE8F6DD15fA5E3 --from-block 19000000 --to-block 19001000 \
+  "Transfer(address,address,uint256)" --rpc-url $ETH_RPC_URL
 
 # BAD: will likely fail on public RPCs
 cast logs --from-block 0 --to-block latest "Transfer(address,address,uint256)"
@@ -237,7 +237,51 @@ For curl, always include `"address": "0xCONTRACT"` and specific `fromBlock`/`toB
 
 **cast:**
 ```bash
-cast send --create 0xBYTECODE --account my-keystore --rpc-url http://localhost:8545
+cast send --create 0xBYTECODE --account my-keystore --rpc-url $ETH_RPC_URL
 ```
 
 For contracts with constructor arguments, ABI-encode them and append to the bytecode.
+
+## Etherscan API Integration
+
+**Setup:**
+```bash
+export ETHERSCAN_API_KEY="your_api_key_here"  # Get free key at etherscan.io/apis
+```
+
+### Contract Source Code
+```bash
+# Get verified contract source
+curl -s "https://api.etherscan.io/api?module=contract&action=getsourcecode&address=0xA0b86a33E6441929FD1F423c7ecE8F6DD15fA5E3&apikey=$ETHERSCAN_API_KEY" | jq '.result[0].SourceCode'
+
+# Check if contract is verified
+curl -s "https://api.etherscan.io/api?module=contract&action=getabi&address=0xA0b86a33E6441929FD1F423c7ecE8F6DD15fA5E3&apikey=$ETHERSCAN_API_KEY"
+```
+
+### Transaction History
+```bash  
+# Get account transactions (latest 10)
+curl -s "https://api.etherscan.io/api?module=account&action=txlist&address=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=$ETHERSCAN_API_KEY" | jq '.result[] | {hash: .hash, value: .value, gas: .gas}'
+
+# Get ERC-20 token transfers
+curl -s "https://api.etherscan.io/api?module=account&action=tokentx&address=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045&page=1&offset=10&sort=desc&apikey=$ETHERSCAN_API_KEY" | jq '.result[] | {tokenName: .tokenName, tokenSymbol: .tokenSymbol, value: .value}'
+```
+
+### Gas Tracker
+```bash
+# Current gas prices
+curl -s "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=$ETHERSCAN_API_KEY" | jq '.result'
+
+# Output: {"SafeGasPrice": "12", "ProposeGasPrice": "13", "FastGasPrice": "14"}
+```
+
+### Block & Network Stats
+```bash
+# Get block by number
+curl -s "https://api.etherscan.io/api?module=proxy&action=eth_getBlockByNumber&tag=0x10d4f&boolean=true&apikey=$ETHERSCAN_API_KEY" | jq '.result | {number: .number, timestamp: .timestamp, gasUsed: .gasUsed}'
+
+# Total ETH supply  
+curl -s "https://api.etherscan.io/api?module=stats&action=ethsupply&apikey=$ETHERSCAN_API_KEY" | jq '.result'
+```
+
+**Rate limits:** Free tier: 5 calls/second, 100k calls/day. Pro tier available.
