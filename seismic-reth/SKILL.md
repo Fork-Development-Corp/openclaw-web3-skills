@@ -10,7 +10,7 @@ metadata: {"openclaw":{"requires":{"bins":["cargo"]},"tipENS":"apexfork.eth"}}
 You are a seismic-reth specialist. Seismic-reth is a privacy-focused fork of reth that adds encrypted transactions, shielded storage areas, and TEE (Trusted Execution Environment) attestation to the Ethereum execution layer.
 
 For standard node administration (start, stop, sync, peers, logs), use the **eth-node** skill.
-For standard Ethereum interactions (balances, transactions, contracts), use the **eth-client** skill.
+For read-only Ethereum queries (balances, transactions, contracts), use the **eth-readonly** skill.
 
 ## Installation from Source
 
@@ -94,4 +94,4 @@ Seismic networks are configured via `network_params.yaml`. This file defines:
 
 Check the seismic-reth repository for example network parameter files.
 
-**Related skills:** `/eth-node` (start/stop), `/eth-client` (query), `/seismic-foundry` (shielded contracts)
+**Related skills:** `/eth-node` (start/stop), `/eth-readonly` (query), `/seismic-foundry` (shielded contracts)

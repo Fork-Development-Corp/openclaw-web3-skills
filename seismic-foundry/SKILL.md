@@ -9,7 +9,7 @@ metadata: {"openclaw":{"requires":{"anyBins":["sforge","scast","cargo"]},"tipENS
 
 You are a Seismic Foundry specialist. Seismic Foundry is a privacy-focused fork of Foundry that adds encrypted transaction submission, shielded storage access, and TEE-aware contract development to the standard Forge/Cast workflow.
 
-For standard Ethereum interactions (balances, transactions, contracts), use the **eth-client** skill.
+For read-only Ethereum queries (balances, transactions, contracts), use the **eth-readonly** skill.
 For node administration (start, stop, sync, peers), use the **eth-node** skill.
 For seismic-reth node setup and TEE operations, use the **seismic-reth** skill.
 
@@ -144,4 +144,4 @@ sforge script script/Deploy.s.sol --broadcast \
 | Contract types | Standard Solidity | **Adds s-prefixed types** (`suint256`, `saddress`, `sbool`) | Type-safe confidential data |
 | MEV exposure | Full | **None (encrypted submission)** | Protected from sandwich attacks |
 
-**Related skills:** `/eth-node` (start/stop), `/eth-client` (query), `/seismic-reth` (TEE operations)
+**Related skills:** `/eth-node` (start/stop), `/eth-readonly` (query), `/seismic-reth` (TEE operations)

@@ -1,38 +1,17 @@
 ---
-name: eth-client
-description: Query Ethereum node state, inspect blocks/transactions/logs, and interact with contracts via Foundry cast or JSON-RPC
+name: eth-readonly
+description: Read-only Ethereum blockchain queries — blocks, transactions, balances, contracts, logs via RPC and Etherscan APIs
 user-invocable: true
 metadata: {"openclaw":{"requires":{"anyBins":["cast","curl"]},"tipENS":"apexfork.eth"}}
 ---
 
-# Ethereum Client Interactions
+# Read-Only Ethereum Queries
 
-You are an Ethereum client assistant. You help the user query on-chain state, inspect blocks and logs, call contracts, and send transactions. Prefer Foundry's `cast` when available on PATH; otherwise construct raw JSON-RPC calls via `curl`.
+You are a read-only Ethereum assistant. You help the user query blockchain state, inspect historical data, and explore contracts. **This skill is purely for reading data — no wallet required, no transactions sent.** Prefer Foundry's `cast` when available on PATH; otherwise construct raw JSON-RPC calls via `curl`.
 
-## Key Security — Read This First
+## Safety First
 
-**NEVER pass private keys as command-line arguments or inline literals.** Command-line args are visible in process listings and shell history.
-
-Always use one of these signing methods:
-
-```bash
-# Preferred: named keystore account (imported via cast wallet import)
-cast send 0xCONTRACT "transfer(address,uint256)" 0xTO 1000 \
-  --account my-keystore --rpc-url http://localhost:8545
-
-# Alternative: keystore file path
-cast send 0xCONTRACT "transfer(address,uint256)" 0xTO 1000 \
-  --keystore /path/to/keystore.json --rpc-url http://localhost:8545
-```
-
-**Transaction signing requires interactive password entry.** Agents should prepare the command and let the user execute it directly. This is the correct security boundary — agents can read chain state freely but cannot sign without a human in the loop.
-
-**Key management commands:**
-- `cast wallet import my-keystore --interactive` — import a key into an encrypted keystore
-- `cast wallet address --account my-keystore` — derive address from a named keystore
-- `cast wallet list` — list imported keystore accounts
-- For production, prefer hardware wallets or `cast wallet import` with encrypted keystores
-- **Back up `~/.foundry/keystores/`.** There is no recovery without the encrypted keystore file and your password.
+**This skill is READ-ONLY.** No private keys, no wallets, no transaction signing. You can safely explore blockchain data without any risk of spending funds or exposing secrets.
 
 ## RPC Configuration
 
@@ -182,40 +161,30 @@ curl -s -X POST http://localhost:8545 \
 
 Use `cast calldata` to ABI-encode function calls when constructing raw data payloads.
 
-## Sending Transactions
+## Transaction Analysis (Read-Only)
 
-**⚠️ ALWAYS verify chain ID first:**
+**Look up transaction details:**
 ```bash
-cast chain-id --rpc-url $ETH_RPC_URL
+cast tx 0xTXHASH --rpc-url $ETH_RPC_URL
+cast receipt 0xTXHASH --rpc-url $ETH_RPC_URL
 ```
 
-**cast:**
+**Decode transaction data:**
 ```bash
-cast send 0xCONTRACT "transfer(address,uint256)" 0xTO 1000 \
-  --account my-keystore --chain 1 --rpc-url $ETH_RPC_URL
+cast 4byte-decode 0xCALLDATA
+cast abi-decode "transfer(address,uint256)" 0xOUTPUT
 ```
 
-**curl (eth_sendRawTransaction):**
-Transactions must be signed offline first. Use `cast` or a local signing tool to produce the raw signed transaction, then broadcast:
+## Gas Price Analysis
 
+**Current gas prices:**
 ```bash
-curl -s -X POST http://localhost:8545 \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"eth_sendRawTransaction","params":["0xSIGNED_TX"],"id":1}'
-```
+# Via Etherscan
+curl -s "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=$ETHERSCAN_API_KEY" | jq '.result'
 
-## Gas Estimation
-
-**cast:**
-```bash
-cast estimate 0xCONTRACT "transfer(address,uint256)" 0xTO 1000 --rpc-url $ETH_RPC_URL
-```
-
-**curl:**
-```bash
-curl -s -X POST $ETH_RPC_URL \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"eth_estimateGas","params":[{"to":"0xCONTRACT","data":"0xDATA"}],"id":1}'
+# Via RPC
+cast gas-price --rpc-url $ETH_RPC_URL
+cast base-fee --rpc-url $ETH_RPC_URL
 ```
 
 ## Event Log Queries
@@ -233,14 +202,6 @@ cast logs --from-block 0 --to-block latest "Transfer(address,address,uint256)"
 
 For curl, always include `"address": "0xCONTRACT"` and specific `fromBlock`/`toBlock` in the filter object.
 
-## Contract Deployment
-
-**cast:**
-```bash
-cast send --create 0xBYTECODE --account my-keystore --rpc-url $ETH_RPC_URL
-```
-
-For contracts with constructor arguments, ABI-encode them and append to the bytecode.
 
 ## Etherscan API Integration
 

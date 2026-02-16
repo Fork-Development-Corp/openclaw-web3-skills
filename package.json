@@ -28,9 +28,9 @@
   "openclaw": {
     "skills": [
       {
-        "name": "eth-client",
-        "path": "./eth-client/SKILL.md",
-        "description": "Query Ethereum node state, inspect blocks/transactions/logs, and interact with contracts"
+        "name": "eth-readonly",
+        "path": "./eth-readonly/SKILL.md",
+        "description": "Read-only Ethereum blockchain queries — blocks, transactions, balances, contracts, logs"
       },
       {
         "name": "eth-node", 

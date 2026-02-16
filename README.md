@@ -6,7 +6,7 @@ A comprehensive collection of skills for Ethereum development, node operations, 
 
 ### Core Ethereum Skills
 
-**[eth-client](./eth-client/)** - Query Ethereum node state, inspect blocks/transactions/logs, and interact with contracts via Foundry cast or JSON-RPC. Essential for any Ethereum interaction.
+**[eth-readonly](./eth-readonly/)** - Read-only Ethereum blockchain queries via RPC and Etherscan APIs. Safe exploration of blocks, transactions, balances, and contracts without any wallet required.
 
 **[eth-node](./eth-node/)** - Manage Ethereum execution client nodes (reth, geth) — start, stop, sync status, peers, logs, configuration. Critical for node operators.
 
@@ -30,8 +30,8 @@ A comprehensive collection of skills for Ethereum development, node operations, 
 
 Each skill includes detailed installation instructions and usage examples. Start with:
 
-1. **[foundry](./foundry/)** - Core Ethereum development toolkit
-2. **[eth-client](./eth-client/)** - Basic blockchain interaction
+1. **[eth-readonly](./eth-readonly/)** - Safe blockchain exploration (no wallet needed)
+2. **[foundry](./foundry/)** - Full development toolkit (includes wallet/signing)
 3. **[eth-node](./eth-node/)** - Node management and operations
 
 For privacy-focused development, explore the Seismic skills after mastering the core toolkit.
