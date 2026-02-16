@@ -18,13 +18,13 @@
   ],
   "author": "OpenClaw Community",
   "license": "MIT",
-  "homepage": "https://github.com/openclaw/ethereum-skills",
+  "homepage": "https://github.com/Fork-Development-Corp/openclaw-web3-skills",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openclaw/ethereum-skills.git"
+    "url": "https://github.com/Fork-Development-Corp/openclaw-web3-skills.git"
   },
   "bugs": {
-    "url": "https://github.com/openclaw/ethereum-skills/issues"
+    "url": "https://github.com/Fork-Development-Corp/openclaw-web3-skills/issues"
   },
   "openclaw": {
     "skills": [
