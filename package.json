@@ -1,19 +1,20 @@
 {
-  "name": "openclaw-ethereum-skills",
-  "version": "1.0.0",
-  "description": "Comprehensive Ethereum development and privacy skills for OpenClaw agents",
+  "name": "openclaw-web3-skills", 
+  "version": "1.1.0",
+  "description": "Comprehensive Web3 skills: Ethereum, IPFS, and privacy technologies for OpenClaw agents",
   "main": "README.md",
   "keywords": [
     "ethereum",
-    "blockchain",
+    "blockchain", 
+    "ipfs",
+    "web3",
     "foundry",
     "privacy",
     "seismic",
     "skills",
     "openclaw",
     "smart-contracts",
-    "defi",
-    "web3"
+    "defi"
   ],
   "author": "OpenClaw Community",
   "license": "MIT",
@@ -51,10 +52,20 @@
         "name": "seismic-reth",
         "path": "./seismic-reth/SKILL.md", 
         "description": "Seismic-reth node — encrypted transactions, shielded storage, TEE operations"
+      },
+      {
+        "name": "ipfs-client",
+        "path": "./ipfs-client/SKILL.md",
+        "description": "Read-only IPFS queries — fetch files, inspect metadata, explore DAGs, resolve IPNS"
+      },
+      {
+        "name": "ipfs-server", 
+        "path": "./ipfs-server/SKILL.md",
+        "description": "Full IPFS node operations — pin content, publish IPNS, manage peers, run gateways"
       }
     ],
-    "tags": ["ethereum", "privacy", "foundry", "blockchain", "web3"],
-    "category": "blockchain",
+    "tags": ["ethereum", "ipfs", "web3", "privacy", "foundry", "blockchain"],
+    "category": "web3",
     "maintainer": "apexfork.eth"
   }
 }
